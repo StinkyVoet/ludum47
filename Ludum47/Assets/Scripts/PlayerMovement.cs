@@ -26,11 +26,11 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(x * speed, rb.velocity.y);
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        } 
-        else if(Input.GetButtonDown("Jump") && wallCollision)
+        }
+        else if (Input.GetButtonDown("Jump") && wallCollision)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
