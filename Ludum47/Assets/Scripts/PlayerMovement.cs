@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public Collider2D col;
 
     [Header("Movement Settings")]
     public float speed = 5;
@@ -30,19 +31,9 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
-        else if (Input.GetButtonDown("Jump") && wallCollision)
+        else if (Input.GetButtonDown("Jump") && col.IsTouchingLayers(groundMask))
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce * 1.2f);
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        wallCollision = true;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        wallCollision = false;
     }
 }
