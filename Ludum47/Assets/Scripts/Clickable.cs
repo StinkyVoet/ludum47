@@ -15,7 +15,7 @@ public class Clickable : MonoBehaviour
 
     bool Inrange = false;
 
-    bool isOpen = false;
+    public bool isOpen = false;
 
     private void Update()
     {
