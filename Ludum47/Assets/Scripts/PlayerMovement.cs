@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     bool isGrounded;
     bool wallCollision;
 
+    public AudioSource Jump;
+    public AudioSource Walk;
+
     // Update is called once per frame
     void Update()
     {
@@ -27,13 +30,20 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(x * speed, rb.velocity.y);
 
+        if (isGrounded && rb.velocity.magnitude > 2f && Walk.isPlaying == false)
+        {
+            Walk.Play();
+        }
+
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            Jump.Play();
         }
         else if (Input.GetButtonDown("Jump") && wallCollision)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            Jump.Play();
         }
     }
 
